@@ -1,0 +1,7 @@
+<% find = params.fetch("path_id")%>
+
+<% matches = Board.where({ :id => find})%>
+<% match = matches.at(0)%>
+<h1><%=match.name%></h1>
+
+

@@ -1,0 +1,16 @@
+<h1>Hi</h1>
+<% board_list = Board.all %>
+<article>
+  <header>
+    All boards
+  </header>
+  <ul>
+    <% board_list.each do |a_board| %>
+      <li>
+        <a href="/boards/<%= a_board.id %>">
+          <%= a_board.name %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</article>
