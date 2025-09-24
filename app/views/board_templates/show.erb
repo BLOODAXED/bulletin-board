@@ -25,14 +25,61 @@
               <%= l.body %>
           </td>
           <td>
-              <%= l.expires_on %>
+              <%= l.expires_on.strftime("%b %e, %Y") %>
           </td>
           <td>
-              <%= l.created_at %>
+              <%= l.created_at.strftime("%b %e, %Y") %>
           </td>
         </tr>
         <% end %>
       
 
   </table>
+</article>
+
+<% e_listings = all_listings.where({:expires_on => (...Date.today)})%>
+<article>
+  <header>
+    Expired Listings at <%=match.name%>
+  </header>
+  <table>
+    <thead>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Expired On</th>
+      <th>Posted on</th>
+    </thead>
+        <% e_listings.each do |l| %>
+        <tr>
+          <td>
+              <%= l.title %>
+          </td>
+          <td>
+              <%= l.body %>
+          </td>
+          <td>
+              <%= l.expires_on.strftime("%b %e, %Y") %>
+          </td>
+          <td>
+              <%= l.created_at.strftime("%b %e, %Y") %>
+          </td>
+        </tr>
+        <% end %>
+      
+
+  </table>
+</article>
+
+<article>
+  <header>Add a New Board</header>
+  <form action="/insert_listing" method="post">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" placeholder="Title of Post">
+    <label for="body">Body</label>
+    <input id="body" type="textarea" name="body" placeholder="Body of Post">
+    <label for="exp">Expires on</label>
+    <input id="exp" type="date" name="exp">
+    <input id="board" type="text" name="board" value="<%=find%>" hidden>
+    <button>Create listing</button>
+  </form>
 </article>
