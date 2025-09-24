@@ -2,6 +2,37 @@
 
 <% matches = Board.where({ :id => find})%>
 <% match = matches.at(0)%>
-<h1><%=match.name%></h1>
 
+<% all_listings = Listing.where({:board_id => find})%>
+<% listings = all_listings.where({:expires_on => (Date.today...)})%>
+<article>
+  <header>
+    Active Listings at <%=match.name%>
+  </header>
+  <table>
+    <thead>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Expires On</th>
+      <th>Posted on</th>
+    </thead>
+        <% listings.each do |l| %>
+        <tr>
+          <td>
+              <%= l.title %>
+          </td>
+          <td>
+              <%= l.body %>
+          </td>
+          <td>
+              <%= l.expires_on %>
+          </td>
+          <td>
+              <%= l.created_at %>
+          </td>
+        </tr>
+        <% end %>
+      
 
+  </table>
+</article>
